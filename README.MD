@@ -1,4 +1,4 @@
-# SQL Query Tutorial Files
+# SQL Query Practice Files
 
 This repository contains various SQL query examples used in the modules. The goal is to help students understand different SQL concepts through practical examples.
 
