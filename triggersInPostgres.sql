@@ -48,6 +48,35 @@ SELECT * FROM log_table
 -- Add a trigger that sets the score to 0 if a new student record is added without a score.
 
 
+-- Trigger function
+-- Trigger function
+CREATE OR REPLACE FUNCTION set_default_score()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    -- Check if NEW.score is NULL
+    IF NEW.score IS NULL THEN
+        NEW.score := 0;
+    END IF;
+
+    RETURN NEW;
+END;
+$$;
+
+-- Trigger
+CREATE TRIGGER set_score_if_null
+BEFORE INSERT ON students
+FOR EACH ROW
+EXECUTE FUNCTION set_default_score();
+
+INSERT INTO students (name, age, score, department_id)
+VALUES
+('Shakil', 25,NULL, 1)
+
+
+
+
 
 
 SELECT* from departments
